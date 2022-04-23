@@ -1,0 +1,11 @@
+Package: glmtlp
+Type: Package
+Title: Generalized linear models with truncated lasso penalty
+Version: 2.0.0
+Date: 2021-08-30
+Author: Author1, Author2, Author3
+Maintainer: Author1 <author1@email.edu>, Author2 <author2@email.edu>
+Depends: R (>= 3.5.0)
+Imports: foreach, doParallel
+Description: GLMTLP, has parallel, using ncores for registration
+License: CC0
