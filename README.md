@@ -10,5 +10,5 @@ Specifically, it offers
 
 Examples to be added.
 
-The implementation of these algorithms are error-prone and this code project is still in development. 
+Implementing these algorithms is error-prone and this code project is still in development. 
 Please file an issue if you encounter any error when using the code. I will be grateful to be informed.
