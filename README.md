@@ -8,7 +8,9 @@ Specifically, it offers
 
 - an R package `intdag` for the peeling causal discovery method and data-perturbation/asymptotic inference.
 
-Examples to be added.
+**Installation guide to be added.**
+
+**Examples to be added.**
 
 Implementing these algorithms is error-prone and this code project is still in development. 
 Please file an issue if you encounter any error when using the code. I will be grateful to be informed.
