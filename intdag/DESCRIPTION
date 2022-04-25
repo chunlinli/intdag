@@ -1,0 +1,10 @@
+Package: intdag
+Type: Package
+Title: Directed acyclic graphs with unspecified interventions
+Version: 2.0.0
+Date: 2022-04-30
+Author: Author1, Author2, Author3
+Maintainer: Author1 <author1@email.edu>, Author2 <author2@email.edu>
+Depends: R (>= 3.5.0)
+Imports: ncvreg, glmtlp
+License: CC0
