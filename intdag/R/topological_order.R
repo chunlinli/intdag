@@ -27,7 +27,8 @@ topological_order <- function(v, thresh=0.15) {
         leaf <- rep(NA, length(leaf_iv))
         leaf_iter <- 1
         for (l in leaf_iv) {
-            j <- which(v_abs[l, ] == max(v_abs[l, !removed_y]))[1]
+            # j <- which(v_abs[l, ] == max(v_abs[l, !removed_y]))[1]
+            j <- which(v_abs[l, ] == max(v_abs[l, !removed_y]) & !removed_y)[1]
             iv_mat[l, j] <- 1
             in_mat[l, j] <- 1
             leaf[leaf_iter] <- j
