@@ -54,8 +54,13 @@ inference_simulation <- function(p_seq = 100, q_seq = 500,
 
     library(mvtnorm)
     library(progress)
-    source("intdag/intdag.R")
+    library(ncvreg)
 
+    source("intdag/R/v_estimation.R")
+    source("intdag/R/topological_order.R")
+    source("intdag/R/causal_discovery.R")
+    source("intdag/R/causal_inference.R")
+    
     res_dir <- "simulation/inference_result"
     if (!dir.exists(res_dir)) dir.create(res_dir)
 

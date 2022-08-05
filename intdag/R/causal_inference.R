@@ -6,8 +6,8 @@ causal_inference <- function(y, x, an_mat, in_mat, f_mat, v_out = NULL, mc_size 
     if (test_type == "edge" && method == "asymptotic") {
         likelihood_ratios <- asymptotic_inference_internal(y, x, an_mat, in_mat, f_mat)
         likelihood_ratio <- sum(likelihood_ratios)
-        p_value <- pchisq(likelihood_ratio, df = sum(d_mat != 0), lower.tail = FALSE)
-        list(likelihood_ratio = likelihood_ratio, df = sum(d_mat != 0), p_value = p_value)
+        p_value <- pchisq(likelihood_ratio, df = sum(f_mat != 0), lower.tail = FALSE)
+        list(likelihood_ratio = likelihood_ratio, df = sum(f_mat != 0), p_value = p_value)
     } else if (test_type == "edge" && method == "dp") {
         if (is.null(v_out)) {
             stop("v_out must be specified for dp inference.")
