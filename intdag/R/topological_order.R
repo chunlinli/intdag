@@ -46,11 +46,11 @@ topological_order <- function(v, thresh=0.15) {
         for (j in leaf) {
             j_instrument <- which(iv_mat[, j] != 0)
             j_descendant <- vector("list", length = length(j_instrument))
-            for (l in 1:length(j_instrument)) {
+            for (l in seq_len(length(j_instrument))) {
                 l2 <- j_instrument[l]
                 j_descendant[[l]] <- which(removed_y & v_abs[l2, ] != 0)
             }
-            # j_descendant <- Reduce(intersect, j_descendant)
+            
             j_descendant <- Reduce(union, j_descendant)
             an_mat[j, j_descendant] <- 1
         }
