@@ -15,14 +15,14 @@ v_estimation <- function(y, x, tau = 0.2 * sqrt(log(q) / n), model_selection = c
     lambda <- rep(0, p)
 
     if (model_selection == "cv") {
-        for (j in 1:p) {
+        for (j in seq_len(p)) {
             m <- cv.ncvreg(X = x, y = y[, j], nfolds = 5)
             v[, j] <- as.numeric(m$fit$beta[-1, m$min])
             err_var[j] <- m$fit$loss[m$min] / n
             lambda[j] <- m$lambda.min
         }
     } else {
-        for (j in 1:p) {
+        for (j in seq_len(p)) {
             m <- ncvreg(X = x, y = y[, j])
             hbic <- m$loss + (log(n) + 2 * log(p)) * colSums(m$beta[-1, ] != 0)
             min <- which.min(hbic)
@@ -40,7 +40,7 @@ v_estimation_internal <- function(y, x, v_init, lambda) {
     q <- ncol(x)
     v <- matrix(0, nrow = q, ncol = p)
     
-    for (j in 1:p) {
+    for (j in seq_len(p)) {
         m <- ncvfit(X = x, y = y[, j], init = v_init[, j], lambda = lambda[j])
         v[, j] <- as.numeric(m$beta[-1])
     }

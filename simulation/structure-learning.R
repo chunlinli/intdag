@@ -52,10 +52,18 @@ structure_learning_simulation <- function(p_seq = 100, q_seq = 500,
 
     library(mvtnorm)
     library(progress)
-    source("intdag/intdag.R")
+    library(ncvreg)
+
+    source("intdag/R/v_estimation.R")
+    source("intdag/R/topological_order.R")
+    source("intdag/R/causal_discovery.R")
+    source("intdag/R/causal_inference.R")
+
+    res_dir <- "simulation/learning_result"
+    if (!dir.exists(res_dir)) dir.create(res_dir)
 
     result_file <- paste0(
-        "./", graph_type,
+        graph_type,
         "_iv_sufficient_", iv_sufficient, ".csv"
     )
     if (file.exists(result_file)) {
@@ -112,7 +120,7 @@ structure_learning_simulation <- function(p_seq = 100, q_seq = 500,
                         )
                     )
                     colnames(result) <- c("p", "q", "n", "sim", "shd")
-                    write.csv(result, result_file, row.names = FALSE)
+                    write.csv(result, sprintf("%s/%s", res_dir, result_file), row.names = FALSE)
                 }
                 cat("\n")
             }
@@ -122,7 +130,7 @@ structure_learning_simulation <- function(p_seq = 100, q_seq = 500,
     cat("Finished! \n")
 }
 
-structure_learning_simulation(graph_type = "random", iv_sufficient = FALSE)
-structure_learning_simulation(graph_type = "random", iv_sufficient = TRUE)
-structure_learning_simulation(graph_type = "hub", iv_sufficient = TRUE)
-structure_learning_simulation(graph_type = "hub", iv_sufficient = FALSE)
+structure_learning_simulation(graph_type = "random", iv_sufficient = FALSE, seed = 1110)
+structure_learning_simulation(graph_type = "random", iv_sufficient = TRUE, seed = 1110)
+structure_learning_simulation(graph_type = "hub", iv_sufficient = TRUE, seed = 1110)
+structure_learning_simulation(graph_type = "hub", iv_sufficient = FALSE, seed = 1110)
