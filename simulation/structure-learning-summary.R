@@ -81,9 +81,10 @@ df <- data_all %>%
 
 output <- ggplot(df, aes(n, shd_avg, group = interaction(setup, method), colour = method)) +
     facet_wrap(~graph) +
-    geom_line(aes(linetype = setup)) +
+    geom_point(aes(shape = setup), size = 2.5) +
+    geom_line() + 
     scale_y_continuous(trans = log2_trans(), breaks = c(1, 2, 4, 32, 512)) +
-    labs(y = "structural Hamming distance", x = "sample size n", linetype = paste0("intervention\n", "setup")) +
+    labs(y = "structural Hamming distance", x = "sample size n", shape = paste0("intervention\n", "setup")) + 
     theme_bw() +
     ggtitle("p = 100, q = 500") + theme(plot.title = element_text(size=11))  
 
