@@ -22,10 +22,10 @@ causal_discovery <- function(y, x, an_mat, in_mat, tau = 0.2 * sqrt(log(q) / n),
             z <- cbind(y[, ancestor], x[, intervention])
 
             if (model_selection == "cv") {
-                m <- cv.ncvreg(X = z, y = y[, j], nfolds = 5)
+                m <- cv.ncvreg(X = z, y = y[, j], nfolds = 5, lambda.min = .05)
                 beta <- as.numeric(m$fit$beta[-1, m$min])
             } else {
-                m <- ncvreg(X = z, y = y[, j])
+                m <- ncvreg(X = z, y = y[, j], lambda.min = .05)
                 hbic <- m$loss + (log(n) + 2 * log(p)) * colSums(m$beta[-1, ] != 0)
                 min <- which.min(hbic)
                 beta <- as.numeric(m$beta[-1, min])
@@ -35,10 +35,10 @@ causal_discovery <- function(y, x, an_mat, in_mat, tau = 0.2 * sqrt(log(q) / n),
             w[intervention, j] <- beta[(length(ancestor) + 1:length(intervention))]
         } else {
             if (model_selection == "cv") {
-                m <- cv.ncvreg(X = x[, intervention], y = y[, j], nfolds = 5)
+                m <- cv.ncvreg(X = x[, intervention], y = y[, j], nfolds = 5, lambda.min = .05)
                 beta <- as.numeric(m$fit$beta[-1, m$min])
             } else {
-                m <- ncvreg(X = x[, intervention], y = y[, j])
+                m <- ncvreg(X = x[, intervention], y = y[, j], lambda.min = .05)
                 hbic <- m$loss + (log(n) + 2 * log(p)) * colSums(m$beta[-1, ] != 0)
                 min <- which.min(hbic)
                 beta <- as.numeric(m$beta[-1, min])

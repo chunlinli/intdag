@@ -1,5 +1,5 @@
 
-topological_order <- function(v, thresh=0.15) {
+topological_order <- function(v, thresh=0.1) {
     p <- ncol(v)
     q <- nrow(v)
     if (q < p) stop("No sufficient interventions: q < p.")
@@ -50,7 +50,7 @@ topological_order <- function(v, thresh=0.15) {
                 l2 <- j_instrument[l]
                 j_descendant[[l]] <- which(removed_y & v_abs[l2, ] != 0)
             }
-            
+
             j_descendant <- Reduce(union, j_descendant)
             an_mat[j, j_descendant] <- 1
         }
