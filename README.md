@@ -25,7 +25,7 @@ source("utility.R")
 set.seed(1110)
 ```
 
-## Examples
+## A Quick Example
 
 First, we generate a random graph with `p=10` and `q=20`.
 ```r
