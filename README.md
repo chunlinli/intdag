@@ -89,6 +89,12 @@ sum(abs((abs(discovery_out$u) > 0.05) - (graph$u != 0)))
 ```
 Here we use a truncation threshold `0.05` to screen the small (noisy) coefficients.
 
+## Contents
+
+The R package is placed in directory `./intdag/`.
+
+The extensive simulation code is placed in directory `./simulation/`.
+
 ## Citing information
 
 If you find the code useful, please consider citing 
