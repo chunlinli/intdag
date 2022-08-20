@@ -1,4 +1,4 @@
-# `intdag`: An R Package For Interventional DAG Estimation and Inference
+# **intdag**: An R Package For Interventional DAG Estimation and Inference
 
 This repository contains an implementation of the paper [*Inference for a Large Directed Acyclic Graph with Unspecified Interventions*](https://arxiv.org/abs/2110.03805).
 
@@ -6,11 +6,11 @@ This repository contains an implementation of the paper [*Inference for a Large 
 
 ### R Packages
 
-First, install the package `glmtlp` which implements the DC projection algorithm in the paper. 
+First, install the package [**glmtlp**](https://github.com/chunlinli/glmtlp) which implements the DC projection algorithm in the paper. 
 ```r
 devtools::install_github("chunlinli/glmtlp")
 ```
-Then install the package `intdag` which offers the peeling causal discovery method and data-perturbation/asymptotic inference.
+Then install the package [**intdag**](https://github.com/chunlinli/intdag) which offers the peeling causal discovery method and data-perturbation/asymptotic inference.
 ```r
 devtools::install_github("chunlinli/intdag/intdag")
 ```
