@@ -1,4 +1,4 @@
-# Estimation and inference of a directed acyclic graph with unspecified interventions
+# `intdag`: An R Package For Interventional DAG Estimation and Inference
 
 This repository contains an implementation of the paper [*Inference for a Large Directed Acyclic Graph with Unspecified Interventions*](https://arxiv.org/abs/2110.03805).
 
