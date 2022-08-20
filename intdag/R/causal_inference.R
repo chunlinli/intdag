@@ -156,7 +156,7 @@ dp_inference_internal <- function(y, x, an_mat, in_mat, f_mat, v_out, mc_size = 
         v_out_dp <- v_estimation_internal(y = y_dp, x = x, v_init = v_out$v, lambda = v_out$lambda)
         top_out_dp <- topological_order(v_out_dp$v)
         an_mat_dp <- top_out_dp$an_mat
-        in_mat_dp <- top_out$in_mat
+        in_mat_dp <- top_out_dp$in_mat
 
         for (j in hypothesized_nodes) {
             test <- which(d_mat[, j] != 0)
