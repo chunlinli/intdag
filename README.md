@@ -1,6 +1,9 @@
 # **intdag**: An R Package For Interventional DAG Estimation and Inference
 
-This repository contains an implementation of the paper [*Inference for a Large Directed Acyclic Graph with Unspecified Interventions*](https://arxiv.org/abs/2110.03805).
+This repository contains an implementation of the paper 
+
+- Li, C., Shen, X., & Pan, W. (2022). [Inference for a large directed acyclic graph with unspecified interventions](https://arxiv.org/abs/2110.03805). Submitted. (A previous version was given the Student Paper Award, Conference on Statistical Learning and Data Science, ASA, May 2020)
+  
 
 ## Installation
 
@@ -102,7 +105,7 @@ If you find the code useful, please consider citing
 @article{
     author = {Chunlin Li, Xiaotong Shen, Wei Pan},
     title = {Inference for a large directed acyclic graph with unspecified interventions},
-    year = {2020}
+    year = {2022}
 }
 ```
 Implementing these algorithms is error-prone and this code project is still in development. 
