@@ -42,9 +42,9 @@ causal_discovery <- function(y, x, an_mat, in_mat,
                 beta <- as.numeric(m$beta[-1, min])
             }
 
-            u[ancestor, j] <- beta[seq_len(ancestor)]
+            u[ancestor, j] <- beta[seq_len(length(ancestor))]
             w[intervention, j] <- beta[
-                (length(ancestor) + seq_len(intervention))
+                (length(ancestor) + seq_len(length(intervention)))
             ]
         } else {
             if (model_selection == "cv") {
