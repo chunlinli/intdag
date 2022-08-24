@@ -18,7 +18,7 @@ causal_discovery <- function(y, x, an_mat, in_mat,
     u <- matrix(0, nrow = p, ncol = p)
     w <- matrix(0, nrow = q, ncol = p)
 
-    for (j in 1:p) {
+    for (j in seq_len(p)) {
         ancestor <- which(an_mat[, j] != 0)
         intervention <- which(in_mat[, j] != 0)
 
