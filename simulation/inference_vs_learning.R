@@ -24,7 +24,7 @@ comp_simulation <- function(p_seq = c(50), q_seq = c(100),
 
     source("intdag/R/v_estimation.R")
     source("intdag/R/topological_order.R")
-    source("intdag/R/causal_discovery.R")
+    source("intdag/R/causal_discovery_internal.R")
     source("intdag/R/causal_inference.R")
 
     res_dir <- "simulation/additional_result"
@@ -55,7 +55,7 @@ comp_simulation <- function(p_seq = c(50), q_seq = c(100),
                 for (n in n_seq) {
                     for (h in hypothesis) {
                         graph$u[1:15, 20] <- 0
-                        graph$u[1, 20] <- sqrt(1 / n) * (h == "Alternative")
+                        graph$u[1, 20] <- 2 * sqrt(1 / n) * (h == "Alternative")
 
                         cat(paste0(
                             "p = ", p, ", q = ", q,
@@ -96,21 +96,21 @@ comp_simulation <- function(p_seq = c(50), q_seq = c(100),
                                     )
                                 )) %*% solve(diag(p) - graph$u)
 
-                            #save(y, x, file = "data.RData")
+                            # save(y, x, file = "data.RData")
 
                             v_out <- v_estimation(
                                 y = y, x = x,
                                 model_selection = "bic"
-                              )
+                            )
 
                             top_out <- topological_order(v_out$v, thresh = .15)
                             an_mat <- top_out$an_mat
                             in_mat <- top_out$in_mat
-                            discovery_out <- causal_discovery(
+                            discovery_out <- causal_discovery_internal(
                                 y = y, x = x,
                                 an_mat = an_mat,
                                 in_mat = in_mat,
-                                model_selection = "bic"
+                                penalty = "MCP"
                             )
 
                             f_mat <- matrix(0, nrow = p, ncol = p)
@@ -122,24 +122,52 @@ comp_simulation <- function(p_seq = c(50), q_seq = c(100),
 
                             f_mat[1:15, 20] <- 1
                             infer_out15 <- causal_inference(y, x,
-                                                          an_mat, in_mat, f_mat,
-                                                          method = "asymptotic", test_type = "edge"
+                                an_mat, in_mat, f_mat,
+                                method = "asymptotic", test_type = "edge"
                             )
-
                             result <- rbind(
                                 result,
                                 c(
                                     p, q, n, h, sim, magnitude, graph_type,
-                                    (discovery_out$u[1, 20] != 0) * 1,
-                                    any(discovery_out$u[1:15,20] != 0) * 1,
+                                    (discovery_out$u_list[[1]][1, 20] != 0) * 1,
+                                    (discovery_out$u_list[[2]][1, 20] != 0) * 1,
+                                    (discovery_out$u_list[[3]][1, 20] != 0) * 1,
+                                    (discovery_out$u_list[[4]][1, 20] != 0) * 1,
+                                    (discovery_out$u_list[[5]][1, 20] != 0) * 1,
+                                    any(discovery_out$u_list[[1]][1:15, 20] != 0) * 1,
+                                    any(discovery_out$u_list[[2]][1:15, 20] != 0) * 1,
+                                    any(discovery_out$u_list[[3]][1:15, 20] != 0) * 1,
+                                    any(discovery_out$u_list[[4]][1:15, 20] != 0) * 1,
+                                    any(discovery_out$u_list[[5]][1:15, 20] != 0) * 1,
+                                    discovery_out$lambda_list[1],
+                                    discovery_out$lambda_list[2],
+                                    discovery_out$lambda_list[3],
+                                    discovery_out$lambda_list[4],
+                                    discovery_out$lambda_list[5],
                                     infer_out1$p_value,
                                     infer_out15$p_value
                                 )
                             )
 
                             colnames(result) <- c(
-                                "p", "q", "n", "hypothesis", "sim", "magnitude",
-                                "graph", "select1", "select15", "pvalue1", "pvalue15"
+                                "p", "q", "n", "hypothesis", "sim", "magnitude", "graph",
+                                "select1_1",
+                                "select1_2",
+                                "select1_3",
+                                "select1_4",
+                                "select1_5",
+                                "select15_1",
+                                "select15_2",
+                                "select15_3",
+                                "select15_4",
+                                "select15_5",
+                                "lambda1",
+                                "lambda2",
+                                "lambda3",
+                                "lambda4",
+                                "lambda5",
+                                "pvalue1",
+                                "pvalue15"
                             )
                             write.csv(result,
                                 sprintf("%s/%s", res_dir, result_file),
@@ -162,9 +190,9 @@ graph_generation <- function(p = 30, q = 100,
                              graph_type = c("random", "hub"),
                              iv_sufficient = TRUE) {
     if (graph_type == "random") {
-        sparsity <- 2/p
+        sparsity <- 2 / p
         u <- matrix(rbinom(p * p, 1, sparsity) * magnitude_large, p, p)
-        # u[u == 0] <- rbinom(length(u[u == 0]), 1, sparsity) * magnitude_small
+
         u[lower.tri(u, diag = TRUE)] <- 0
 
         w <- matrix(0, nrow = q, ncol = p)
@@ -185,7 +213,7 @@ graph_generation <- function(p = 30, q = 100,
         for (k in 1:num_of_hub) {
             u[k, idx == k] <- 1
         }
-        # u[u == 0] <- rbinom(length(u[u == 0]), 1, sparsity) * magnitude_small
+
         u[lower.tri(u, diag = TRUE)] <- 0
 
 
