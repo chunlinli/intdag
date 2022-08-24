@@ -1,5 +1,5 @@
 
-v_estimation <- function(y, x, tau = 0.2 * sqrt(log(q) / n), model_selection = c("cv", "bic")) {
+v_estimation <- function(y, x, model_selection = c("cv", "bic")) {
     p <- ncol(y)
     q <- ncol(x)
     if (q < p) stop("No sufficient interventions: q < p.")

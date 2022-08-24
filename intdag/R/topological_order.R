@@ -1,5 +1,5 @@
 
-topological_order <- function(v, thresh=0.1) {
+topological_order <- function(v, thresh = 0.1) {
     p <- ncol(v)
     q <- nrow(v)
     if (q < p) stop("No sufficient interventions: q < p.")
@@ -66,4 +66,3 @@ topological_order <- function(v, thresh=0.1) {
 
     list(an_mat = an_mat, in_mat = in_mat, iv_mat = iv_mat)
 }
-
