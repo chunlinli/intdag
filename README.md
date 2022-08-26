@@ -41,13 +41,13 @@ Let's print the $U$ matrix.
 ```r
 graph$u
 ```
-This is a `p` by `p` adjacency matrix of the DAG that we want to recover and/or make inference. Note that $U_{jk}\neq 0$ means an edge from $Y_j$ to $Y_k$.
+This is a `p` by `p` adjacency matrix of the DAG that we want to recover and/or make inference. Note that $U_{jk} \neq 0$ means an edge from $Y_{j}$ to $Y_{k}$.
 
 Then print the $W$ matrix.
 ```r
 graph$w
 ```
-This is a `q` by `p` matrix, indicating the interventional relations of an intervention varibale $X_l$ and a primary variable $Y_j$, where $W_{lj}\neq 0$ means $X_l$ directly intervenes on $Y_j$.
+This is a `q` by `p` matrix, indicating the interventional relations of an intervention varibale $X_{l}$ and a primary variable $Y_{j}$, where $W_{lj} \neq 0$ means $X_{l}$ directly intervenes on $Y_{j}$.
 In above, `w` corresponds to the simulation Setup B in the paper. 
 
 Next, generate a random sample of size `n=200` based on the graph. According to the analysis in the paper, the distribution of intervention variables $X$ does not matter too much. Here we generate $X$ so that they have an AR(1) correlation structure. 
