@@ -54,6 +54,7 @@ Next, generate a random sample of size `n=200` based on the graph. According to 
 ```r
 n <- 200
 x <- matrix(rnorm(n * q), nrow = n, ncol = q)
+rho <- 0.5
 if (rho != 0) {
     for (j in 2:q) {
         x[, j] <- sqrt(1 - rho^2) * x[, j] + rho * x[, j - 1]
