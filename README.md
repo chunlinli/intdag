@@ -2,7 +2,7 @@
 
 This repository contains an implementation of the paper 
 
-- Li, C., Shen, X., & Pan, W. (2022). [Inference for a large directed acyclic graph with unspecified interventions](https://arxiv.org/abs/2110.03805). Submitted. (A previous version was given the Student Paper Award, Conference on Statistical Learning and Data Science, ASA, May 2020)
+- Li, C., Shen, X., & Pan, W. (2023). [Inference for a large directed acyclic graph with unspecified interventions](https://arxiv.org/abs/2110.03805). Journal of Machine Learning Research. (A previous version was given the Student Paper Award, Conference on Statistical Learning and Data Science, ASA, May 2020)
   
 
 ## Installation
