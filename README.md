@@ -103,10 +103,11 @@ The extensive simulation code is placed in directory `./simulation/`.
 
 If you find the code useful, please consider citing 
 ```
-@article{
+@article{li2023inference,
     author = {Chunlin Li, Xiaotong Shen, Wei Pan},
     title = {Inference for a large directed acyclic graph with unspecified interventions},
-    year = {2022}
+    journal = {Journal of Machine Learning Research},
+    year = {2023}
 }
 ```
 Implementing these algorithms is error-prone and this code project is still in development. 
